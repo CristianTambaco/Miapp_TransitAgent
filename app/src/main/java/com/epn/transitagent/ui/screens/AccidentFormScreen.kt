@@ -145,24 +145,40 @@ fun AccidentFormScreen(
             // 1. TIPO DE ACCIDENTE
             Text(
                 text = "Seleccione el tipo de siniestro ocurrido:",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.padding(bottom = 8.dp)
             )
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 AccidentType.entries.forEach { type ->
+                    val isSelected = formState.accidentType == type
                     FilterChip(
-                        selected = formState.accidentType == type,
+                        selected = isSelected,
                         onClick = { viewModel.updateAccidentType(type) },
-                        label = { Text(type.displayName) },
-                        leadingIcon = if (formState.accidentType == type) {
-                            { Icon(Icons.Default.Check, contentDescription = null, Modifier.size(18.dp)) }
-                        } else null
+                        label = {
+                            Text(
+                                text = type.displayName,
+                                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface
+                            )
+                        },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MaterialTheme.colorScheme.primary,
+                            selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                            containerColor = MaterialTheme.colorScheme.surface,
+                            labelColor = MaterialTheme.colorScheme.onSurface
+                        ),
+                        modifier = Modifier
+                            .height(40.dp)
+                            .weight(1f) // Esto hace que ocupe toda la fila
                     )
                 }
             }
-            
+
+
+
             // 2. FECHA DEL SINIESTRO
             Text(
                 text = "Complete los siguientes campos:",
