@@ -126,7 +126,7 @@ fun AccidentFormScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Registro de Accidente") },
+                title = { Text("FORMULARIO REGISTRO DE ACCIDENTES DE TRÁNSITO") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer
                 )
@@ -143,7 +143,7 @@ fun AccidentFormScreen(
         ) {
             // 1. TIPO DE ACCIDENTE
             Text(
-                text = "Tipo de Accidente *",
+                text = "Seleccione el tipo de siniestro ocurrido:",
                 style = MaterialTheme.typography.titleMedium
             )
             Row(
@@ -164,7 +164,7 @@ fun AccidentFormScreen(
             
             // 2. FECHA DEL SINIESTRO
             Text(
-                text = "Fecha del Siniestro *",
+                text = "Complete los siguientes campos:",
                 style = MaterialTheme.typography.titleMedium
             )
             OutlinedCard(
@@ -177,12 +177,12 @@ fun AccidentFormScreen(
                         .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(Icons.Default.DateRange, contentDescription = null)
+                    //Icon(Icons.Default.DateRange, contentDescription = null)
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
                         text = formState.accidentDate?.let {
                             SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date(it))
-                        } ?: "Seleccionar fecha"
+                        } ?: "Seleccione la fecha del siniestro"
                     )
                 }
             }
@@ -191,8 +191,8 @@ fun AccidentFormScreen(
             OutlinedTextField(
                 value = formState.licensePlate,
                 onValueChange = { viewModel.updateLicensePlate(it.uppercase()) },
-                label = { Text("Matrícula del Auto *") },
-                leadingIcon = { Icon(Icons.Default.DirectionsCar, contentDescription = null) },
+                label = { Text("Matrícula auto involucrado") },
+                //leadingIcon = { Icon(Icons.Default.DirectionsCar, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true
             )
@@ -201,8 +201,8 @@ fun AccidentFormScreen(
             OutlinedTextField(
                 value = formState.driverName,
                 onValueChange = { viewModel.updateDriverName(it) },
-                label = { Text("Nombre del Conductor *") },
-                leadingIcon = { Icon(Icons.Default.Person, contentDescription = null) },
+                label = { Text("Nombre conductor") },
+                //leadingIcon = { Icon(Icons.Default.Person, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true
             )
@@ -211,8 +211,8 @@ fun AccidentFormScreen(
             OutlinedTextField(
                 value = formState.driverIdNumber,
                 onValueChange = { viewModel.updateDriverIdNumber(it) },
-                label = { Text("Cédula del Conductor *") },
-                leadingIcon = { Icon(Icons.Default.Badge, contentDescription = null) },
+                label = { Text("Cédula conductor") },
+                //leadingIcon = { Icon(Icons.Default.Badge, contentDescription = null) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true
             )
@@ -222,7 +222,7 @@ fun AccidentFormScreen(
                 value = formState.observations,
                 onValueChange = { viewModel.updateObservations(it) },
                 label = { Text("Observaciones") },
-                leadingIcon = { Icon(Icons.Default.Notes, contentDescription = null) },
+                //leadingIcon = { Icon(Icons.Default.Notes, contentDescription = null) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(120.dp),
@@ -231,7 +231,7 @@ fun AccidentFormScreen(
             
             // 7. FOTOGRAFÍAS
             Text(
-                text = "Fotografías",
+                text = "Fotografías del siniestro",
                 style = MaterialTheme.typography.titleMedium
             )
             
@@ -245,9 +245,9 @@ fun AccidentFormScreen(
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Icon(Icons.Default.CameraAlt, contentDescription = null)
+                //Icon(Icons.Default.CameraAlt, contentDescription = null)
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Tomar Foto")
+                Text("Capturar foto ")
             }
             
             if (formState.photos.isNotEmpty()) {
@@ -261,7 +261,7 @@ fun AccidentFormScreen(
                             Box {
                                 AsyncImage(
                                     model = uri,
-                                    contentDescription = "Foto del accidente",
+                                    contentDescription = "Foto del siniestro",
                                     modifier = Modifier.fillMaxSize(),
                                     contentScale = ContentScale.Crop
                                 )
@@ -285,9 +285,9 @@ fun AccidentFormScreen(
                 )
             }
             
-            // 8. UBICACIÓN GPS
+            // 8. UBICACIÓN
             Text(
-                text = "Ubicación GPS",
+                text = "Ubicación del siniestro",
                 style = MaterialTheme.typography.titleMedium
             )
             
@@ -316,13 +316,9 @@ fun AccidentFormScreen(
                         Row(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(
-                                Icons.Default.LocationOff,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.outline
-                            )
+
                             Spacer(modifier = Modifier.width(8.dp))
-                            Text("Ubicación no registrada")
+                            //Text("Ubicación no registrada")
                         }
                     }
                     
@@ -338,19 +334,19 @@ fun AccidentFormScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Icon(Icons.Default.MyLocation, contentDescription = null)
+                        //Icon(Icons.Default.MyLocation, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Obtener Ubicación Actual")
+                        Text("Obtener Ubicación GPS")
                     }
                 }
             }
             
             // Mensaje de campos requeridos
-            Text(
-                text = "* Campos obligatorios",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.outline
-            )
+            //Text(
+            //    text = "* Campos obligatorios",
+            //    style = MaterialTheme.typography.bodySmall,
+            //    color = MaterialTheme.colorScheme.outline
+           //)
             
             Spacer(modifier = Modifier.height(8.dp))
             
@@ -362,7 +358,7 @@ fun AccidentFormScreen(
                         VibrationHelper.vibrate(context, 5000L)
                         Toast.makeText(
                             context,
-                            "Reporte de accidente guardado exitosamente",
+                            "Registro guardado exitosamente",
                             Toast.LENGTH_LONG
                         ).show()
                         viewModel.clearForm()
@@ -376,9 +372,9 @@ fun AccidentFormScreen(
                     containerColor = MaterialTheme.colorScheme.primary
                 )
             ) {
-                Icon(Icons.Default.Save, contentDescription = null)
+                //Icon(Icons.Default.Save, contentDescription = null)
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("GUARDAR REPORTE", style = MaterialTheme.typography.titleMedium)
+                Text("GUARDAR", style = MaterialTheme.typography.titleMedium)
             }
             
             Spacer(modifier = Modifier.height(32.dp))
