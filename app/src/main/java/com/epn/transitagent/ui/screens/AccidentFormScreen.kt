@@ -129,7 +129,7 @@ fun AccidentFormScreen(
             TopAppBar(
                 title = { Text("FORMULARIO REGISTRO DE ACCIDENTES DE TRÁNSITO") },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                    containerColor = MaterialTheme.colorScheme.primary
                 )
             )
         }

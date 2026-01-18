@@ -2,10 +2,17 @@ package com.epn.transitagent.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFA9A9A9)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Light theme colors
+val PrimaryBlue = Color(0xFF1976D2)
+val OnPrimaryBlue = Color(0xFFFFFFFF)
 
-val Purple40 = Color(0xFF125FD3)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val SecondaryGreen = Color(0xFF26A69A)
+val OnSecondaryGreen = Color(0xFFFFFFFF)
+
+val BackgroundLight = Color(0xFFEAE8E8)
+val SurfaceLight = Color(0xFFEAE8E8)
+
+val TextPrimary = Color(0xFF1E1E1E)
+val TextSecondary = Color(0xFF5F6368)
+
+val ErrorRed = Color(0xFFD32F2F)
