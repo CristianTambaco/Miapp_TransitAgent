@@ -17,6 +17,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -234,7 +235,7 @@ fun AccidentFormScreen(
                 text = "Fotografías del siniestro",
                 style = MaterialTheme.typography.titleMedium
             )
-            
+
             Button(
                 onClick = {
                     if (permissionsState.allPermissionsGranted) {
@@ -243,25 +244,27 @@ fun AccidentFormScreen(
                         permissionsState.launchMultiplePermissionRequest()
                     }
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                shape = RectangleShape
             ) {
-                //Icon(Icons.Default.CameraAlt, contentDescription = null)
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Capturar foto ")
+                Text("Tomar Foto")
             }
-            
+
+
             if (formState.photos.isNotEmpty()) {
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(formState.photos) { uri ->
                         Card(
-                            modifier = Modifier.size(100.dp)
+                            modifier = Modifier.size(100.dp),
+                            shape = RectangleShape
                         ) {
                             Box {
                                 AsyncImage(
                                     model = uri,
-                                    contentDescription = "Foto del siniestro",
+                                    contentDescription = "Fotografía",
                                     modifier = Modifier.fillMaxSize(),
                                     contentScale = ContentScale.Crop
                                 )
@@ -277,6 +280,7 @@ fun AccidentFormScreen(
                                 }
                             }
                         }
+
                     }
                 }
                 Text(
@@ -323,7 +327,7 @@ fun AccidentFormScreen(
                     }
                     
                     Spacer(modifier = Modifier.height(12.dp))
-                    
+
                     Button(
                         onClick = {
                             if (permissionsState.allPermissionsGranted) {
@@ -332,12 +336,13 @@ fun AccidentFormScreen(
                                 permissionsState.launchMultiplePermissionRequest()
                             }
                         },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RectangleShape
                     ) {
-                        //Icon(Icons.Default.MyLocation, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Obtener Ubicación GPS")
+                        Text("Presione para obtener la ubicación actual")
                     }
+
                 }
             }
             
